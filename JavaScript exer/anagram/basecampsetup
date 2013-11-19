@@ -1,0 +1,21 @@
+clear
+echo "Welcome to Fullstack Academy's Bootcamp Basecamp v1.0"
+echo "We will now be installing exercism to start this workshop."
+read -p "Press the [Enter] key to start..."
+npm install jasmine-node -g
+cd ~/workspace
+wget https://github.com/exercism/cli/releases/download/v1.2.3/exercism-linux-386.tgz
+tar -xvf exercism-linux-386.tgz
+echo "export PATH=/usr/local/share/npm/bin:$PATH" >> ~/.bash_profile
+echo "alias debug-jasmine-node='node debug /home/action/.nvm/v0.10.11/lib/node_modules/jasmine-node/lib/jasmine-node/cli.js'" >> ~/.bash_profile
+clear
+echo "=========================================================="
+echo "Node is setup. Now, we'll get some information from you to setup Exercism."
+echo ""
+read -p "What is your github username?: " githubuser
+read -p "What is your Exercism API Key?: " apikey
+echo "{\"githubUsername\":\"$githubuser\",\"apiKey\":\"$apikey\",\"exercismDirectory\":\"/home/action/workspace\",\"hostname\":\"http://exercises.fullstackacademy.com\"}" > ~/.exercism.go
+echo ""
+./exercism fetch
+source ~/.bash_profile
+echo "Thank You, you're all setup. You can use the command debug-jasmine-node to run your exercism files in debug mode."
